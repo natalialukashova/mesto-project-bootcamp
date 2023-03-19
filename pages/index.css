@@ -1,0 +1,17 @@
+/* нормализация стилей */
+@import url(../vendor/normalize.css);
+
+/* слили для page */
+@import url(../blocks/page/page.css);
+
+/* слили для header */
+@import url(../blocks/header/header.css);
+
+/* слили для profile */
+@import url(../blocks/profile/profile.css);
+
+/* слили для elements */
+@import url(../blocks/elements/elements.css);
+
+/* слили для footer */
+@import url(../blocks/footer/footer.css);
