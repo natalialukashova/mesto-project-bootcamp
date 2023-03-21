@@ -1,4 +1,8 @@
 .profile {
-   color: #fff;
-   display: flex;
+  color: #fff;
+  display: grid;
+  grid-template-areas: "image info add-button";
+  grid-template-columns: 120px 336px auto;
+  padding: 40px 0 50px;
+  gap: 30px;
 }

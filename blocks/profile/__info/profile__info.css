@@ -1,0 +1,11 @@
+.profile__info {
+  text-align: left;
+  grid-area: info;
+
+  display: grid;
+  grid-template-areas:
+    "title edit-btn"
+    "subtitle subtitle";
+  max-width: 336px;
+  gap: 16px 18px;
+}
