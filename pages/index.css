@@ -23,5 +23,12 @@
 /* слили для elements */
 @import url(../blocks/elements/elements.css);
 
+/* слили для element */
+@import url(../blocks/element/element.css);
+@import url(../blocks/element/__image/element__image.css);
+@import url(../blocks/element/__title/element__title.css);
+@import url(../blocks/element/__icon/element__icon.css);
+@import url(../blocks/element/__group/element__group.css);
+
 /* слили для footer */
 @import url(../blocks/footer/footer.css);
