@@ -9,7 +9,4 @@
   max-width: 880px;
   margin: 0 auto;
   font-family: "Inter", sans-serif;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
 }

@@ -1,0 +1,20 @@
+.element__button {
+  cursor: pointer;
+  background-image: url(../../../images/elements/icon.svg);
+  background-repeat: no-repeat;
+  width: 22px;
+  height: 19px;
+  border: 0;
+  background-color: transparent;
+  align-self: center;
+}
+
+.element__button:hover {
+  opacity: 0.6;
+  transition: opacity 0.5s ease-in;
+}
+
+.element__button:active {
+  background-image: url(../../../images/elements/black-icon.svg);
+  opacity: 1;
+}

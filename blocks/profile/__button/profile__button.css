@@ -1,15 +1,20 @@
 .profile__button {
-   max-width: 150px;
-   max-height: 50px;
+   width: 150px;
+   height: 50px;
    background-image: url(../../../images/plus.svg);
    background-repeat: no-repeat;
    background-position: center;
    background-color: transparent;
    border: 2px solid #fff;
    border-radius: 2px;
-   padding: 20px 64px;
+   padding: 0;
    grid-area: add-button;
    cursor: pointer;
    justify-self: end;
    align-self: center;
 }
+
+.profile__button:hover {
+   opacity: 0.6;
+   transition: opacity 0.5s ease-in;
+ }
