@@ -9,3 +9,10 @@
   max-width: 336px;
   gap: 16px 18px;
 }
+
+@media screen and (max-width: 767px) {
+  .profile__info {
+     margin: 0 auto;
+     gap: 14px 10px;
+  }
+}
