@@ -7,7 +7,7 @@
     "title edit-btn"
     "subtitle subtitle";
   max-width: 336px;
-  gap: 16px 18px;
+  gap: 4px 18px;
 }
 
 @media screen and (max-width: 767px) {
