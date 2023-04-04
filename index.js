@@ -8,7 +8,7 @@ const profileSubtitle = document.querySelector(".profile__subtitle");
 const inputTitle = document.querySelector(".input__title");
 const inputDescription = document.querySelector(".input__description");
 const popupInputs = document.querySelectorAll(".popup__input");
-const popupForm = document.querySelector(".popup__form");
+const editPopupForm = editPopup.querySelector(".popup__form");
 const saveButton = editPopup.querySelector(".popup__button");
 const blockForCards = document.querySelector(".cards");
 const cardTemplate = document.querySelector("#card").content;
@@ -99,8 +99,8 @@ const handleFormSubmit = (evt) => {
   profileTitle.textContent = titleValue;
   profileSubtitle.textContent = descriptionValue;
 
-  closePopup();
+  closePopup(editPopup);
 };
 
 // навешивание на кнопку и форму метод редактирования информации о пользователе
-popupForm.addEventListener("submit", handleFormSubmit);
+editPopupForm.addEventListener("submit", handleFormSubmit);
