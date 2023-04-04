@@ -9,7 +9,7 @@ const inputTitle = document.querySelector(".input__title");
 const inputDescription = document.querySelector(".input__description");
 const popupInputs = document.querySelectorAll(".popup__input");
 const popupForm = document.querySelector(".popup__form");
-const saveButton = document.querySelector(".popup__button");
+const saveButton = editPopup.querySelector(".popup__button");
 const blockForCards = document.querySelector(".cards");
 const cardTemplate = document.querySelector("#card").content;
 const newCardForm = newCardPopup.querySelector('.form__new_place');
@@ -104,4 +104,3 @@ const handleFormSubmit = (evt) => {
 
 // навешивание на кнопку и форму метод редактирования информации о пользователе
 popupForm.addEventListener("submit", handleFormSubmit);
-saveButton.addEventListener("click", handleFormSubmit);
