@@ -1,6 +1,6 @@
 const popup = document.querySelector(".popup");
 const editButton = document.querySelector(".profile__edit-btn");
-const closeButton = document.querySelector(".popup__close-icon");
+const closeButtonList = document.querySelectorAll(".popup__close-icon");
 const profileTitle = document.querySelector(".profile__title");
 const profileSubtitle = document.querySelector(".profile__subtitle");
 const inputTitle = document.querySelector(".input__title");
@@ -10,6 +10,7 @@ const popupForm = document.querySelector(".popup__form");
 const saveButton = document.querySelector(".popup__button");
 const blockForCards = document.querySelector(".cards");
 const cardTemplate = document.querySelector("#card").content;
+
 
 // массив с карточками для стартовой загрузки
 const initialCards = [
@@ -58,7 +59,15 @@ editButton.addEventListener("click", () => {
 });
 
 // функция закрытия попапа
-const closePopup = () => {
+// const closePopup = (event) => {
+//   console.log('work');
+//   popup.classList.remove("popup_opened");
+//   popupInputs.forEach((item) => {
+//     item.value = "";
+//   });
+// };
+
+const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
   popupInputs.forEach((item) => {
     item.value = "";
@@ -66,7 +75,13 @@ const closePopup = () => {
 };
 
 // навешиваем на кнопку функцию закрытия попапа
-closeButton.addEventListener("click", closePopup);
+// closeButtonList.addEventListener("click", closePopup);
+closeButtonList.forEach((button) => {
+  const popup = button.closest('.popup');
+  popup.addEventListener("click", () => {
+    closePopup(popup);
+  });
+})
 
 // метод, позволяющий редактировать информацию о пользователе
 const handleFormSubmit = (evt) => {
