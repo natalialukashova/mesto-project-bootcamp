@@ -19,77 +19,13 @@
       </div>
       <button class="profile__button" type="button"></button>
     </section>
-    <section class="elements">
-      <article class="element">
-        <img
-          src="./images/elements/image1.jpg"
-          alt="храм в Карачаевске"
-          class="element__image"
-        />
-        <div class="element__group">
-          <h2 class="element__title">Карачаевск</h2>
-          <button class="element__button" type="button"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img
-          src="./images/elements/image2.jpg"
-          alt="гора Эльбрус на закате"
-          class="element__image"
-        />
-        <div class="element__group">
-          <h2 class="element__title">Гора Эльбрус</h2>
-          <button class="element__button" type="button"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img
-          src="./images/elements/image3.jpg"
-          alt="лес на фоне гор Домбая"
-          class="element__image"
-        />
-        <div class="element__group">
-          <h2 class="element__title">Домбай</h2>
-          <button class="element__button" type="button"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img
-          src="./images/elements/image2.jpg"
-          alt="гора Эльбрус на закате"
-          class="element__image"
-        />
-        <div class="element__group">
-          <h2 class="element__title">Гора Эльбрус</h2>
-          <button class="element__button" type="button"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img
-          src="./images/elements/image3.jpg"
-          alt="лес на фоне гор Домбая"
-          class="element__image"
-        />
-        <div class="element__group">
-          <h2 class="element__title">Домбай</h2>
-          <button class="element__button" type="button"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img
-          src="./images/elements/image1.jpg"
-          alt="храм в Карачаевске"
-          class="element__image"
-        />
-        <div class="element__group">
-          <h2 class="element__title">Карачаевск</h2>
-          <button class="element__button" type="button"></button>
-        </div>
-      </article>
+    <section class="elements cards">
+      <!-- блок для карточек -->
     </section>
     <footer class="footer">
       <p class="footer__text">&#169; 2020 Mesto Russia</p>
     </footer>
+
     <div class="popup">
       <button class="popup__close-icon"></button>
       <div class="popup__container">
@@ -105,10 +41,25 @@
             type="text"
             class="popup__input input__description"
           />
-          <button class="popup__button" type="button">Сохранить</button>
+          <button class="popup__button" type="submit">Сохранить</button>
         </form>
       </div>
     </div>
+
+    <template id="card">
+      <article class="element card__element">
+        <img
+          src=""
+          alt="фото карточки"
+          class="element__image card__image"
+        />
+        <div class="element__group">
+          <h2 class="element__title card__title"></h2>
+          <button class="element__button" type="button"></button>
+        </div>
+      </article>
+    </template>
+
     <script src="./index.js"></script>
   </body>
 </html>
