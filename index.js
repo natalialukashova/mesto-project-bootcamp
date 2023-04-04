@@ -1,5 +1,7 @@
-const popup = document.querySelector(".popup");
+const editPopup = document.querySelector(".popup__edit");
+const newCardPopup = document.querySelector('.popup__card');
 const editButton = document.querySelector(".profile__edit-btn");
+const addNewCardButton = document.querySelector('.profile__button')
 const closeButtonList = document.querySelectorAll(".popup__close-icon");
 const profileTitle = document.querySelector(".profile__title");
 const profileSubtitle = document.querySelector(".profile__subtitle");
@@ -10,7 +12,7 @@ const popupForm = document.querySelector(".popup__form");
 const saveButton = document.querySelector(".popup__button");
 const blockForCards = document.querySelector(".cards");
 const cardTemplate = document.querySelector("#card").content;
-
+const newCardForm = newCardPopup.querySelector('.form__new_place');
 
 // массив с карточками для стартовой загрузки
 const initialCards = [
@@ -40,48 +42,52 @@ const initialCards = [
   },
 ];
 
-// отображаем стартовые карточки на странице
-initialCards.forEach((item) => {
+// функция наполнения карточки контентом
+const createCard = (item) => {
   const cardElement = cardTemplate
     .querySelector(".card__element")
     .cloneNode(true);
   cardElement.querySelector(".card__image").src = item.link;
   cardElement.querySelector(".card__image").alt = item.name;
   cardElement.querySelector(".card__title").textContent = item.name;
-  blockForCards.append(cardElement);
+  return cardElement;
+};
+
+// отображаем стартовые карточки на странице
+initialCards.forEach((item) => {
+  blockForCards.append(createCard(item));
 });
 
-// реализация открытия попапа редактирования профиля
-editButton.addEventListener("click", () => {
+// функция открытия попапа редактирования профиля
+const openEditPopup = () => {
   inputTitle.value = profileTitle.textContent;
   inputDescription.value = profileSubtitle.textContent;
-  popup.classList.add("popup_opened");
-});
+  editPopup.classList.add("popup_opened");
+}
+
+editButton.addEventListener("click", openEditPopup);
+
+// функция открытия попапа для добавления новой карточки
+const openNewCardPopup = () => {
+  newCardForm.reset();
+  newCardPopup.classList.add("popup_opened");
+}
+
+addNewCardButton.addEventListener('click', openNewCardPopup)
+
 
 // функция закрытия попапа
-// const closePopup = (event) => {
-//   console.log('work');
-//   popup.classList.remove("popup_opened");
-//   popupInputs.forEach((item) => {
-//     item.value = "";
-//   });
-// };
-
 const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
-  popupInputs.forEach((item) => {
-    item.value = "";
-  });
 };
 
 // навешиваем на кнопку функцию закрытия попапа
-// closeButtonList.addEventListener("click", closePopup);
 closeButtonList.forEach((button) => {
-  const popup = button.closest('.popup');
-  popup.addEventListener("click", () => {
+  const popup = button.closest(".popup");
+  button.addEventListener("click", () => {
     closePopup(popup);
   });
-})
+});
 
 // метод, позволяющий редактировать информацию о пользователе
 const handleFormSubmit = (evt) => {
