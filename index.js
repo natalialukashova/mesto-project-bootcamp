@@ -13,6 +13,8 @@ const saveButton = editPopup.querySelector(".popup__button");
 const blockForCards = document.querySelector(".cards");
 const cardTemplate = document.getElementById("card").content;
 const newCardForm = newCardPopup.querySelector(".form__new_place");
+const nameOfNewCard = newCardForm.querySelector(".input__type_name");
+const linkOfNewCard = newCardForm.querySelector(".input__type_link");
 
 // функция наполнения карточки контентом
 const createCard = (item) => {
@@ -76,12 +78,12 @@ editPopupForm.addEventListener("submit", handleEditProfileFormSubmit);
 
 const handlePlaceSubmit = (evt) => {
   evt.preventDefault();
-
-  const nameOfNewCard = newCardForm.querySelector(".input__type_name");
-  const linkOfNewCard = newCardForm.querySelector(".input__type_link");
-
   const card = { name: nameOfNewCard.value, link: linkOfNewCard.value };
-  console.dir(card);
+  const firstCard = blockForCards.firstChild;
+  
+  blockForCards.insertBefore(createCard(card), firstCard);
+
+  closePopup(newCardPopup);
 };
 
 newCardForm.addEventListener("submit", handlePlaceSubmit);
