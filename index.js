@@ -58,11 +58,16 @@ initialCards.forEach((item) => {
   blockForCards.append(createCard(item));
 });
 
+// универсальная функция открытия попапов
+const openPopup = (popup) => {
+  popup.classList.add('popup_opened');
+}
+
 // функция открытия попапа редактирования профиля
 const openEditPopup = () => {
   inputTitle.value = profileTitle.textContent;
   inputDescription.value = profileSubtitle.textContent;
-  editPopup.classList.add("popup_opened");
+  openPopup(editPopup);
 }
 
 editButton.addEventListener("click", openEditPopup);
@@ -70,7 +75,7 @@ editButton.addEventListener("click", openEditPopup);
 // функция открытия попапа для добавления новой карточки
 const openNewCardPopup = () => {
   newCardForm.reset();
-  newCardPopup.classList.add("popup_opened");
+  openPopup(newCardPopup);
 }
 
 addNewCardButton.addEventListener('click', openNewCardPopup)
