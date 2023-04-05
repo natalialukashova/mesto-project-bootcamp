@@ -1,7 +1,7 @@
 const editPopup = document.querySelector(".popup__edit");
-const newCardPopup = document.querySelector('.popup__card');
+const newCardPopup = document.querySelector(".popup__card");
 const editButton = document.querySelector(".profile__edit-btn");
-const addNewCardButton = document.querySelector('.profile__button')
+const addNewCardButton = document.querySelector(".profile__button");
 const closeButtonList = document.querySelectorAll(".popup__close-icon");
 const profileTitle = document.querySelector(".profile__title");
 const profileSubtitle = document.querySelector(".profile__subtitle");
@@ -11,36 +11,8 @@ const popupInputs = document.querySelectorAll(".popup__input");
 const editPopupForm = editPopup.querySelector(".popup__form");
 const saveButton = editPopup.querySelector(".popup__button");
 const blockForCards = document.querySelector(".cards");
-const cardTemplate = document.querySelector("#card").content;
-const newCardForm = newCardPopup.querySelector('.form__new_place');
-
-// массив с карточками для стартовой загрузки
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
+const cardTemplate = document.getElementById("card").content;
+const newCardForm = newCardPopup.querySelector(".form__new_place");
 
 // функция наполнения карточки контентом
 const createCard = (item) => {
@@ -53,22 +25,22 @@ const createCard = (item) => {
   return cardElement;
 };
 
-// отображаем стартовые карточки на странице
-initialCards.forEach((item) => {
-  blockForCards.append(createCard(item));
-});
-
 // универсальная функция открытия попапов
 const openPopup = (popup) => {
-  popup.classList.add('popup_opened');
-}
+  popup.classList.add("popup_opened");
+};
+
+// функция закрытия попапа
+const closePopup = (popup) => {
+  popup.classList.remove("popup_opened");
+};
 
 // функция открытия попапа редактирования профиля
 const openEditPopup = () => {
   inputTitle.value = profileTitle.textContent;
   inputDescription.value = profileSubtitle.textContent;
   openPopup(editPopup);
-}
+};
 
 editButton.addEventListener("click", openEditPopup);
 
@@ -76,15 +48,9 @@ editButton.addEventListener("click", openEditPopup);
 const openNewCardPopup = () => {
   newCardForm.reset();
   openPopup(newCardPopup);
-}
-
-addNewCardButton.addEventListener('click', openNewCardPopup)
-
-
-// функция закрытия попапа
-const closePopup = (popup) => {
-  popup.classList.remove("popup_opened");
 };
+
+addNewCardButton.addEventListener("click", openNewCardPopup);
 
 // навешиваем на кнопку функцию закрытия попапа
 closeButtonList.forEach((button) => {
@@ -95,17 +61,32 @@ closeButtonList.forEach((button) => {
 });
 
 // метод, позволяющий редактировать информацию о пользователе
-const handleFormSubmit = (evt) => {
+const handleEditProfileFormSubmit = (evt) => {
   evt.preventDefault();
 
-  const titleValue = inputTitle.value;
-  const descriptionValue = inputDescription.value;
-
-  profileTitle.textContent = titleValue;
-  profileSubtitle.textContent = descriptionValue;
+  profileTitle.textContent = inputTitle.value;
+  profileSubtitle.textContent = inputDescription.value;
 
   closePopup(editPopup);
 };
 
 // навешивание на кнопку и форму метод редактирования информации о пользователе
-editPopupForm.addEventListener("submit", handleFormSubmit);
+editPopupForm.addEventListener("submit", handleEditProfileFormSubmit);
+
+
+const handlePlaceSubmit = (evt) => {
+  evt.preventDefault();
+
+  const nameOfNewCard = newCardForm.querySelector(".input__type_name");
+  const linkOfNewCard = newCardForm.querySelector(".input__type_link");
+
+  const card = { name: nameOfNewCard.value, link: linkOfNewCard.value };
+  console.dir(card);
+};
+
+newCardForm.addEventListener("submit", handlePlaceSubmit);
+
+// отображаем стартовые карточки на странице
+initialCards.forEach((item) => {
+  blockForCards.append(createCard(item));
+});
