@@ -113,18 +113,17 @@ const deleteCard = (evt) => {
   console.log(evt.target.parentNode.remove());
 };
 
-const createPhotoPopup = ({ name, link }) => {
+const openPhotoPopup = ({ name, link }) => {
   photoPopupImage.src = link;
   photoPopupImage.alt = name;
   photoPopupFigcaption.textContent = name;
-  return photoPopup;
+  openPopup(photoPopup);
 }
 
-const openPhotoPopup = (evt) => {
+const handlePhotoPopup = (evt) => {
   evt.preventDefault();
-
-  openPopup(createPhotoPopup);
-};
+  openPhotoPopup({ name: evt.target.alt, link: evt.target.src });
+}
 
 // навешиваем событие, по которому будут лайкаться карточки
 likeButtonList.forEach((button) => {
@@ -137,5 +136,5 @@ trashBittonList.forEach((button) => {
 });
 
 cardImageList.forEach((img) => {
-  img.addEventListener("click", openPhotoPopup);
+  img.addEventListener("click", handlePhotoPopup);
 });
