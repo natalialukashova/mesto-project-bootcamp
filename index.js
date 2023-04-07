@@ -22,9 +22,9 @@ const createCard = (item) => {
     .querySelector(".card__element")
     .cloneNode(true);
 
-  const likeButtonList = document.querySelectorAll(".element__button");
-  const trashBittonList = document.querySelectorAll(".element__trash");
-  const cardImageList = document.querySelectorAll(".card__image");
+  const likeButton = document.querySelector(".element__button");
+  const trashBitton = document.querySelector(".element__trash");
+  const cardImage = document.querySelector(".card__image");
   const photoPopup = document.querySelector(".photo-popup");
   const photoPopupImage = document.querySelector(".photo-popup__image");
   const photoPopupFigcaption = document.querySelector(
@@ -41,31 +41,14 @@ const createCard = (item) => {
     evt.target.parentNode.remove();
   };
 
-  const openPhotoPopup = ({ name, link }) => {
-    photoPopupImage.src = link;
-    photoPopupImage.alt = name;
-    photoPopupFigcaption.textContent = name;
-    openPopup(photoPopup);
-  };
   
-  const handlePhotoPopup = (evt) => {
-    evt.preventDefault();
-    openPhotoPopup({ name: evt.target.alt, link: evt.target.src });
-  };
-
   // навешиваем событие, по которому будут лайкаться карточки
-  likeButtonList.forEach((button) => {
-    button.addEventListener("click", handleLike);
-  });
+  likeButton.addEventListener("click", handleLike);
 
   // навешиваем событие, по которому будут удаляться карточки
-  trashBittonList.forEach((button) => {
-    button.addEventListener("click", deleteCard);
-  });
+  trashBitton.addEventListener("click", deleteCard);
 
-  cardImageList.forEach((img) => {
-    img.addEventListener("click", handlePhotoPopup);
-  });
+  cardImage.addEventListener("click", handlePhotoPopup);
 
   cardElement.querySelector(".card__image").src = item.link;
   cardElement.querySelector(".card__image").alt = item.name;
@@ -131,6 +114,19 @@ const handlePlaceSubmit = (evt) => {
 };
 // навешиваем на форму метод добавления новой карточки
 newCardForm.addEventListener("submit", handlePlaceSubmit);
+
+const openPhotoPopup = ({ name, link }) => {
+  photoPopupImage.src = link;
+  photoPopupImage.alt = name;
+  photoPopupFigcaption.textContent = name;
+  openPopup(photoPopup);
+};
+
+const handlePhotoPopup = (evt) => {
+  evt.preventDefault();
+  openPhotoPopup({ name: evt.target.alt, link: evt.target.src });
+};
+
 
 // отображаем стартовые карточки на странице
 initialCards.reverse().forEach((item) => {
