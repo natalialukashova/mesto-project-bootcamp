@@ -15,6 +15,9 @@ const cardTemplate = document.getElementById("card").content;
 const newCardForm = newCardPopup.querySelector(".form__new_place");
 const nameOfNewCard = newCardForm.querySelector(".input__type_name");
 const linkOfNewCard = newCardForm.querySelector(".input__type_link");
+const photoPopup = document.querySelector(".photo-popup");
+const photoPopupImage = document.querySelector(".photo-popup__image");
+const photoPopupFigcaption = document.querySelector(".photo-popup__figcaption");
 
 // функция наполнения карточки контентом
 const createCard = (item) => {
@@ -22,14 +25,9 @@ const createCard = (item) => {
     .querySelector(".card__element")
     .cloneNode(true);
 
-  const likeButton = document.querySelector(".element__button");
-  const trashBitton = document.querySelector(".element__trash");
-  const cardImage = document.querySelector(".card__image");
-  const photoPopup = document.querySelector(".photo-popup");
-  const photoPopupImage = document.querySelector(".photo-popup__image");
-  const photoPopupFigcaption = document.querySelector(
-    ".photo-popup__figcaption"
-  );
+  const likeButton = cardElement.querySelector(".element__button");
+  const trashBitton = cardElement.querySelector(".element__trash");
+  const cardImage = cardElement.querySelector(".card__image");
 
   // метод, позволяющий лайкать карточки
   const handleLike = (evt) => {
@@ -41,7 +39,6 @@ const createCard = (item) => {
     evt.target.parentNode.remove();
   };
 
-  
   // навешиваем событие, по которому будут лайкаться карточки
   likeButton.addEventListener("click", handleLike);
 
@@ -127,10 +124,7 @@ const handlePhotoPopup = (evt) => {
   openPhotoPopup({ name: evt.target.alt, link: evt.target.src });
 };
 
-
 // отображаем стартовые карточки на странице
 initialCards.reverse().forEach((item) => {
   blockForCards.prepend(createCard(item));
 });
-
-
