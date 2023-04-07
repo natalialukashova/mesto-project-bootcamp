@@ -91,8 +91,9 @@ initialCards.reverse().forEach((item) => {
   blockForCards.prepend(createCard(item));
 });
 
-// ищем все кнопки лайков на странице
+// ищем все кнопки лайков и удления карточек на странице
 const likeButtonList = document.querySelectorAll(".element__button");
+const trashBittonList = document.querySelectorAll('.element__trash');
 
 // метод, позволяющий лайкать карточки
 const handleLike = (evt) => {
@@ -101,8 +102,19 @@ const handleLike = (evt) => {
   evt.target.classList.toggle('element__button_active');
 }
 
+// метод, позволяющий удалять карточки
+const deleteCard = (evt) => {
+  evt.preventDefault();
+
+  console.log(evt.target.parentNode.remove());
+}
+
 // навешиваем событие, по которому будут лайкаться карточки
 likeButtonList.forEach((button) => {
   button.addEventListener("click", handleLike);
 });
 
+// навешиваем событие, по которому будут удаляться карточки
+trashBittonList.forEach(button => {
+  button.addEventListener('click', deleteCard)
+})
