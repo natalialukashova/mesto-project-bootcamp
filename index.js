@@ -19,6 +19,13 @@ const photoPopup = document.querySelector(".photo-popup");
 const photoPopupImage = document.querySelector(".photo-popup__image");
 const photoPopupFigcaption = document.querySelector(".photo-popup__figcaption");
 
+const openPhotoPopup = ({ name, link }) => {
+  photoPopupImage.src = link;
+  photoPopupImage.alt = name;
+  photoPopupFigcaption.textContent = name;
+  openPopup(photoPopup);
+};
+
 // функция наполнения карточки контентом
 const createCard = (item) => {
   const cardElement = cardTemplate
@@ -27,12 +34,12 @@ const createCard = (item) => {
 
   const likeButton = cardElement.querySelector(".element__button");
   const trashBitton = cardElement.querySelector(".element__trash");
-  const cardImage = cardElement.querySelector(".card__image");
-  const cardTitle = cardElement.querySelector(".card__title");
+  const cardImage = cardElement.querySelector(".element__image");
+  const cardTitle = cardElement.querySelector(".element__title");
 
   // метод, позволяющий лайкать карточки
-  const handleLike = (evt) => {
-    evt.target.classList.toggle("element__button_active");
+  const handleLike = () => {
+    likeButton.classList.toggle("element__button_active");
   };
 
   // метод, позволяющий удалять карточки
@@ -40,8 +47,8 @@ const createCard = (item) => {
     cardElement.remove();
   };
 
-  const handlePhotoPopup = (evt) => {
-    openPhotoPopup({ name: evt.target.alt, link: evt.target.src });
+  const handlePhotoPopup = (item) => {
+    openPhotoPopup({ name: item.alt, link: item.src });
   };
 
   // навешиваем событие, по которому будут лайкаться карточки
@@ -116,15 +123,6 @@ const handlePlaceSubmit = (evt) => {
 };
 // навешиваем на форму метод добавления новой карточки
 newCardForm.addEventListener("submit", handlePlaceSubmit);
-
-const openPhotoPopup = ({ name, link }) => {
-  photoPopupImage.src = link;
-  photoPopupImage.alt = name;
-  photoPopupFigcaption.textContent = name;
-  openPopup(photoPopup);
-};
-
-
 
 // отображаем стартовые карточки на странице
 initialCards.reverse().forEach((item) => {
