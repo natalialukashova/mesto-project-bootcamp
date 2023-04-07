@@ -47,8 +47,9 @@ const createCard = (item) => {
     cardElement.remove();
   };
 
-  const handlePhotoPopup = (item) => {
-    openPhotoPopup({ name: item.alt, link: item.src });
+  const handlePhotoPopup = () => {
+    console.log(item);
+    openPhotoPopup({ name: item.name, link: item.link });
   };
 
   // навешиваем событие, по которому будут лайкаться карточки
