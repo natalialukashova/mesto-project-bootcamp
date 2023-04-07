@@ -28,6 +28,7 @@ const createCard = (item) => {
   const likeButton = cardElement.querySelector(".element__button");
   const trashBitton = cardElement.querySelector(".element__trash");
   const cardImage = cardElement.querySelector(".card__image");
+  const cardTitle = cardElement.querySelector(".card__title");
 
   // метод, позволяющий лайкать карточки
   const handleLike = (evt) => {
@@ -35,8 +36,12 @@ const createCard = (item) => {
   };
 
   // метод, позволяющий удалять карточки
-  const deleteCard = (evt) => {
-    evt.target.parentNode.remove();
+  const deleteCard = () => {
+    cardElement.remove();
+  };
+
+  const handlePhotoPopup = (evt) => {
+    openPhotoPopup({ name: evt.target.alt, link: evt.target.src });
   };
 
   // навешиваем событие, по которому будут лайкаться карточки
@@ -47,9 +52,9 @@ const createCard = (item) => {
 
   cardImage.addEventListener("click", handlePhotoPopup);
 
-  cardElement.querySelector(".card__image").src = item.link;
-  cardElement.querySelector(".card__image").alt = item.name;
-  cardElement.querySelector(".card__title").textContent = item.name;
+  cardImage.src = item.link;
+  cardImage.alt = item.name;
+  cardTitle.textContent = item.name;
   return cardElement;
 };
 
@@ -119,10 +124,7 @@ const openPhotoPopup = ({ name, link }) => {
   openPopup(photoPopup);
 };
 
-const handlePhotoPopup = (evt) => {
-  evt.preventDefault();
-  openPhotoPopup({ name: evt.target.alt, link: evt.target.src });
-};
+
 
 // отображаем стартовые карточки на странице
 initialCards.reverse().forEach((item) => {
