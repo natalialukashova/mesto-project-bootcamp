@@ -71,24 +71,38 @@ const handleEditProfileFormSubmit = (evt) => {
 
   closePopup(editPopup);
 };
-
-// навешивание на кнопку и форму метод редактирования информации о пользователе
+// навешиваем на форму метод редактирования информации о пользователе
 editPopupForm.addEventListener("submit", handleEditProfileFormSubmit);
 
-
+// метод, позволяющий добавлять новую карточку на страницу
 const handlePlaceSubmit = (evt) => {
   evt.preventDefault();
   const card = { name: nameOfNewCard.value, link: linkOfNewCard.value };
-  const firstCard = blockForCards.firstChild;
-  
-  blockForCards.insertBefore(createCard(card), firstCard);
+
+  blockForCards.prepend(createCard(card));
 
   closePopup(newCardPopup);
 };
-
+// навешиваем на форму метод добавления новой карточки
 newCardForm.addEventListener("submit", handlePlaceSubmit);
 
 // отображаем стартовые карточки на странице
-initialCards.forEach((item) => {
-  blockForCards.append(createCard(item));
+initialCards.reverse().forEach((item) => {
+  blockForCards.prepend(createCard(item));
 });
+
+// ищем все кнопки лайков на странице
+const likeButtonList = document.querySelectorAll(".element__button");
+
+// метод, позволяющий лайкать карточки
+const handleLike = (evt) => {
+  evt.preventDefault();
+
+  evt.target.classList.toggle('element__button_active');
+}
+
+// навешиваем событие, по которому будут лайкаться карточки
+likeButtonList.forEach((button) => {
+  button.addEventListener("click", handleLike);
+});
+
