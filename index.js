@@ -93,33 +93,38 @@ initialCards.reverse().forEach((item) => {
 
 // ищем все кнопки лайков, удаления карточек и картинки на странице
 const likeButtonList = document.querySelectorAll(".element__button");
-const trashBittonList = document.querySelectorAll('.element__trash');
-const cardImageList = document.querySelectorAll('.card__image');
-const photoPopup = document.querySelector('.photo-popup');
-const photoPopupImage = document.querySelector('.photo-popup__image');
-const photoPopupFigcaption = document.querySelector('.photo-popup__figcaption');
+const trashBittonList = document.querySelectorAll(".element__trash");
+const cardImageList = document.querySelectorAll(".card__image");
+const photoPopup = document.querySelector(".photo-popup");
+const photoPopupImage = document.querySelector(".photo-popup__image");
+const photoPopupFigcaption = document.querySelector(".photo-popup__figcaption");
 
 // метод, позволяющий лайкать карточки
 const handleLike = (evt) => {
   evt.preventDefault();
 
-  evt.target.classList.toggle('element__button_active');
-}
+  evt.target.classList.toggle("element__button_active");
+};
 
 // метод, позволяющий удалять карточки
 const deleteCard = (evt) => {
   evt.preventDefault();
 
   console.log(evt.target.parentNode.remove());
+};
+
+const createPhotoPopup = ({ name, link }) => {
+  photoPopupImage.src = link;
+  photoPopupImage.alt = name;
+  photoPopupFigcaption.textContent = name;
+  return photoPopup;
 }
 
 const openPhotoPopup = (evt) => {
-  console.log(evt);
-  photoPopupImage.src = evt.src;
-  photoPopupImage.alt = evt.alt;
-  photoPopupFigcaption = evt.alt;
-  openPopup(photoPopup);
-}
+  evt.preventDefault();
+
+  openPopup(createPhotoPopup);
+};
 
 // навешиваем событие, по которому будут лайкаться карточки
 likeButtonList.forEach((button) => {
@@ -127,10 +132,10 @@ likeButtonList.forEach((button) => {
 });
 
 // навешиваем событие, по которому будут удаляться карточки
-trashBittonList.forEach(button => {
-  button.addEventListener('click', deleteCard)
-})
+trashBittonList.forEach((button) => {
+  button.addEventListener("click", deleteCard);
+});
 
-cardImageList.forEach(img => {
-  img.addEventListener('click', openPhotoPopup)
-})
+cardImageList.forEach((img) => {
+  img.addEventListener("click", openPhotoPopup);
+});
