@@ -97,7 +97,7 @@ const trashBittonList = document.querySelectorAll('.element__trash');
 const cardImageList = document.querySelectorAll('.card__image');
 const photoPopup = document.querySelector('.photo-popup');
 const photoPopupImage = document.querySelector('.photo-popup__image');
-let photoPopupFigcaption = document.querySelector('.photo-popup__figcaption');
+const photoPopupFigcaption = document.querySelector('.photo-popup__figcaption');
 
 // метод, позволяющий лайкать карточки
 const handleLike = (evt) => {
@@ -114,9 +114,10 @@ const deleteCard = (evt) => {
 }
 
 const openPhotoPopup = (evt) => {
-  photoPopupImage.src = evt.link;
-  photoPopupImage.alt = evt.name;
-  photoPopupFigcaption = evt.name;
+  console.log(evt);
+  photoPopupImage.src = evt.src;
+  photoPopupImage.alt = evt.alt;
+  photoPopupFigcaption = evt.alt;
   openPopup(photoPopup);
 }
 
