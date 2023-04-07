@@ -31,11 +31,7 @@
         <button class="popup__close-icon"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form">
-          <input
-            name="title"
-            type="text"
-            class="popup__input input__title"
-          />
+          <input name="title" type="text" class="popup__input input__title" />
           <input
             name="description"
             type="text"
@@ -68,14 +64,26 @@
       </div>
     </div>
 
-    <template id="card">
-      <article class="element card__element">
-        <img src="./images/elements/Trash.svg" alt="удалить карточку" class="element__trash">
+    <div class="popup photo-popup">
+      <figure class="photo-popup__figure">
+        <button class="popup__close-icon photo-popup__close-icon"></button>
         <img
           src=""
-          alt="фото карточки"
-          class="element__image card__image"
+          alt=""
+          class="photo-popup__image"
         />
+        <figcaption class="photo-popup__figcaption"></figcaption>
+      </figure>
+    </div>
+
+    <template id="card">
+      <article class="element card__element">
+        <img
+          src="./images/elements/Trash.svg"
+          alt="удалить карточку"
+          class="element__trash"
+        />
+        <img src="" alt="фото карточки" class="element__image card__image" />
         <div class="element__group">
           <h2 class="element__title card__title"></h2>
           <button class="element__button" type="button"></button>

@@ -45,3 +45,9 @@
 @import url(../blocks/popup/__button/popup__button.css);
 @import url(../blocks/popup/__close-icon/popup__close-icon.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
+
+/* слили для photo-popup */
+@import url(../blocks/photo-popup/photo-popup.css);
+@import url(../blocks/photo-popup/__image/photo-popup__image.css);
+@import url(../blocks/photo-popup/__figure/photo-popup__figure.css);
+@import url(../blocks/photo-popup/__figcaption/photo-popup__figcaption.css);
