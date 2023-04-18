@@ -75,10 +75,31 @@ const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
 };
 
+const cleaningErrorsOfPopup = (popup) => {
+  const popupForm = popup.querySelector(configValidation.formSelector);
+  const popupInputsList = Array.from(
+    popupForm.querySelectorAll(configValidation.inputSelector)
+  );
+  popupInputsList.forEach((inputElement) => {
+    inputElement.classList.remove(configValidation.inputErrorClass);
+  });
+  const errorElementsList = Array.from(
+    popupForm.querySelectorAll(configValidation.errorSelector)
+  );
+  errorElementsList.forEach((errorElement) => {
+    errorElement.classList.remove(configValidation.errorClass);
+    errorElement.textContent = "";
+  });
+  const buttonElement = popup.querySelector(configValidation.buttonSelector);
+  buttonElement.disabled = true;
+  buttonElement.classList.add(configValidation.inactiveButtonClass);
+};
+
 // функция открытия попапа редактирования профиля
 const openEditPopup = () => {
   inputTitle.value = profileTitle.textContent;
   inputDescription.value = profileSubtitle.textContent;
+  cleaningErrorsOfPopup(editPopup);
   openPopup(editPopup);
 };
 
@@ -87,6 +108,7 @@ editButton.addEventListener("click", openEditPopup);
 // функция открытия попапа для добавления новой карточки
 const openNewCardPopup = () => {
   newCardForm.reset();
+  cleaningErrorsOfPopup(newCardPopup);
   openPopup(newCardPopup);
 };
 
@@ -128,4 +150,3 @@ newCardForm.addEventListener("submit", handlePlaceSubmit);
 initialCards.reverse().forEach((item) => {
   blockForCards.prepend(createCard(item));
 });
-
