@@ -1,13 +1,3 @@
-const configValidation = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  buttonSelector: ".popup__button",
-  errorSelector: ".error",
-  inactiveButtonClass: "popup__button_inactive",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__input-error_active",
-};
-
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(configValidation.inputErrorClass);
@@ -74,4 +64,4 @@ const enableValidation = () => {
   });
 };
 
-enableValidation(configValidation);
+

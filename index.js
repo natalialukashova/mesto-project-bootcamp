@@ -19,6 +19,16 @@ const photoPopup = document.querySelector(".photo-popup");
 const photoPopupImage = document.querySelector(".photo-popup__image");
 const photoPopupFigcaption = document.querySelector(".photo-popup__figcaption");
 
+const configValidation = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  buttonSelector: ".popup__button",
+  errorSelector: ".error",
+  inactiveButtonClass: "popup__button_inactive",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__input-error_active",
+};
+
 const openPhotoPopup = ({ name, link }) => {
   photoPopupImage.src = link;
   photoPopupImage.alt = name;
@@ -150,3 +160,5 @@ newCardForm.addEventListener("submit", handlePlaceSubmit);
 initialCards.reverse().forEach((item) => {
   blockForCards.prepend(createCard(item));
 });
+
+enableValidation(configValidation);
