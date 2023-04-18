@@ -30,13 +30,27 @@
       <div class="popup__container">
         <button class="popup__close-icon"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form">
-          <input name="title" type="text" class="popup__input input__title" />
+        <form class="popup__form" novalidate>
+          <input
+            name="title"
+            type="text"
+            class="popup__input input__title"
+            id="input__title"
+            minlength="2"
+            maxlength="40"
+            required
+          />
+          <span class="input__title-error"></span>
           <input
             name="description"
             type="text"
             class="popup__input input__description"
+            id="input__description"
+            minlength="2"
+            maxlength="200"
+            required
           />
+          <span class="input__description-error"></span>
           <button class="popup__button" type="submit">Сохранить</button>
         </form>
       </div>
@@ -46,19 +60,27 @@
       <div class="popup__container">
         <button class="popup__close-icon"></button>
         <h2 class="popup__title">Новое место</h2>
-        <form class="popup__form form__new_place">
+        <form class="popup__form form__new_place" novalidate>
           <input
             name="title"
             type="text"
             placeholder="Название"
             class="popup__input input__type_name"
+            id="input__type_name"
+            minlength="2"
+            maxlength="30"
+            required
           />
+          <span class="input__type_name-error"></span>
           <input
             name="description"
-            type="text"
+            type="url"
             placeholder="Ссылка на картинку"
             class="popup__input input__type_link"
+            id="input__type_link"
+            required
           />
+          <span class="input__type_link-error"></span>
           <button class="popup__button" type="submit">Создать</button>
         </form>
       </div>
@@ -67,11 +89,7 @@
     <div class="popup photo-popup">
       <figure class="photo-popup__figure">
         <button class="popup__close-icon photo-popup__close-icon"></button>
-        <img
-          src=""
-          alt=""
-          class="photo-popup__image"
-        />
+        <img src="" alt="" class="photo-popup__image" />
         <figcaption class="photo-popup__figcaption"></figcaption>
       </figure>
     </div>
