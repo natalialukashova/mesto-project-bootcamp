@@ -5,4 +5,5 @@
    object-fit: cover;
    object-position: top left;
    cursor: pointer;
+   display: block;
 }

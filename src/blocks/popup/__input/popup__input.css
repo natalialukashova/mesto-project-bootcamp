@@ -3,13 +3,13 @@
   border-top: 0;
   border-right: 0;
   border-left: 0;
-  margin: 54px auto 0;
+  margin: 0 auto;
   padding: 0 0 13px 0;
   width: 100%;
 }
 
-.popup__input:last-of-type {
-  margin-top: 30px;
+.popup__input:first-child {
+  margin-top: 54px;
 }
 
 .popup__input::placeholder {

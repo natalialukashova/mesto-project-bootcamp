@@ -33,7 +33,7 @@
       <p class="footer__text">&#169; 2020 Mesto Russia</p>
     </footer>
 
-    <div class="popup popup__edit">
+    <div class="popup popup_type_edit">
       <div class="popup__container">
         <button class="popup__close-icon"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
@@ -47,7 +47,7 @@
             maxlength="40"
             required
           />
-          <span class="input__title-error error"></span>
+          <span class="input__title-error input_error"></span>
           <input
             name="description"
             type="text"
@@ -57,13 +57,13 @@
             maxlength="200"
             required
           />
-          <span class="input__description-error error"></span>
+          <span class="input__description-error input_error"></span>
           <button class="popup__button" type="submit">Сохранить</button>
         </form>
       </div>
     </div>
 
-    <div class="popup popup__card">
+    <div class="popup popup_type_card">
       <div class="popup__container">
         <button class="popup__close-icon"></button>
         <h2 class="popup__title">Новое место</h2>
@@ -78,7 +78,7 @@
             maxlength="30"
             required
           />
-          <span class="input__type_name-error error"></span>
+          <span class="input__type_name-error input_error"></span>
           <input
             name="description"
             type="url"
@@ -87,17 +87,17 @@
             id="input__type_link"
             required
           />
-          <span class="input__type_link-error error"></span>
+          <span class="input__type_link-error input_error"></span>
           <button class="popup__button" type="submit">Создать</button>
         </form>
       </div>
     </div>
 
-    <div class="popup photo-popup">
+    <div class="popup popup__type_photo-popup">
       <figure class="photo-popup__figure">
-        <button class="popup__close-icon photo-popup__close-icon"></button>
-        <img src="" alt="" class="photo-popup__image" />
-        <figcaption class="photo-popup__figcaption"></figcaption>
+        <button class="popup__close-icon popup__photo-popup_close-icon"></button>
+        <img src="" alt="" class="popup__photo-popup_image" />
+        <figcaption class="popup__photo-popup_figcaption"></figcaption>
       </figure>
     </div>
 

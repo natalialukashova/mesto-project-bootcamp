@@ -4,8 +4,8 @@ import { createCard } from "./card.js";
 import { initialCards } from "./data.js";
 import { openPopup, closePopup } from './modal.js'
 
-const editPopup = document.querySelector(".popup__edit");
-const newCardPopup = document.querySelector(".popup__card");
+const editPopup = document.querySelector(".popup_type_edit");
+const newCardPopup = document.querySelector(".popup_type_card");
 const editButton = document.querySelector(".profile__edit-btn");
 const addNewCardButton = document.querySelector(".profile__button");
 const closeButtonList = document.querySelectorAll(".popup__close-icon");
@@ -18,9 +18,9 @@ const profileTitle = document.querySelector(".profile__title");
 const profileSubtitle = document.querySelector(".profile__subtitle");
 const inputTitle = document.querySelector(".input__title");
 const inputDescription = document.querySelector(".input__description");
-const photoPopup = document.querySelector(".photo-popup");
+const photoPopup = document.querySelector(".popup__type_photo-popup");
 const photoPopupImage = document.querySelector(".photo-popup__image");
-const photoPopupFigcaption = document.querySelector(".photo-popup__figcaption");
+const photoPopupFigcaption = document.querySelector(".popup__photo-popup_figcaption");
 const nameOfNewCard = newCardForm.querySelector(".input__type_name");
 const linkOfNewCard = newCardForm.querySelector(".input__type_link");
 

@@ -48,9 +48,10 @@
 @import url(../blocks/popup/__input/_type/popup__input_type_error.css);
 @import url(../blocks/popup/__input-error/_active/popup__input-error_active.css);
 @import url(../blocks/popup/__button/_inactive/popup__button_inactive.css);
+@import url(../blocks/popup/__input/_error/input_error.css);
 
 /* слили для photo-popup */
-@import url(../blocks/photo-popup/photo-popup.css);
-@import url(../blocks/photo-popup/__image/photo-popup__image.css);
-@import url(../blocks/photo-popup/__figure/photo-popup__figure.css);
-@import url(../blocks/photo-popup/__figcaption/photo-popup__figcaption.css);
+@import url(../blocks/popup/__photo-popup/popup__photo-popup.css);
+@import url(../blocks/popup/__photo-popup/_figure/popup__photo-popup_figure.css);
+@import url(../blocks/popup/__photo-popup/_figcaption/popup__photo-popup_figcaption.css);
+@import url(../blocks/popup/__photo-popup/_image/popup__photo-popup_image.css);
