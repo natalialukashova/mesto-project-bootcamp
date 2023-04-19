@@ -1,5 +1,25 @@
 import { configValidation } from "./index.js";
 
+export const cleaningErrorsOfPopup = (popup) => {
+  const popupForm = popup.querySelector(configValidation.formSelector);
+  const popupInputsList = Array.from(
+    popupForm.querySelectorAll(configValidation.inputSelector)
+  );
+  popupInputsList.forEach((inputElement) => {
+    inputElement.classList.remove(configValidation.inputErrorClass);
+  });
+  const errorElementsList = Array.from(
+    popupForm.querySelectorAll(configValidation.errorSelector)
+  );
+  errorElementsList.forEach((errorElement) => {
+    errorElement.classList.remove(configValidation.errorClass);
+    errorElement.textContent = "";
+  });
+  const buttonElement = popup.querySelector(configValidation.buttonSelector);
+  buttonElement.disabled = true;
+  buttonElement.classList.add(configValidation.inactiveButtonClass);
+};
+
 const showInputError = (formElement, inputElement, errorMessage, config) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(config.inputErrorClass);

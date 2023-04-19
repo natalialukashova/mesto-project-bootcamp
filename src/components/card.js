@@ -1,4 +1,4 @@
-import { openPhotoPopup } from "./modal.js";
+import { openPhotoPopup } from "./index.js";
 
 const cardTemplate = document.getElementById("card").content;
 
