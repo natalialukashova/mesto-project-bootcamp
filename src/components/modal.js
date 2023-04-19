@@ -1,4 +1,5 @@
 import { configValidation } from "./index.js";
+import { createCard } from "./card.js";
 
 const editPopup = document.querySelector(".popup__edit");
 const newCardPopup = document.querySelector(".popup__card");
