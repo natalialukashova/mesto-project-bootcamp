@@ -1,4 +1,4 @@
-import { configValidation } from "./index";
+import { configValidation } from "./index.js";
 
 const editPopup = document.querySelector(".popup__edit");
 const newCardPopup = document.querySelector(".popup__card");

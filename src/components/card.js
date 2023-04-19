@@ -1,7 +1,7 @@
-import { initialCards } from "./data";
+import { openPhotoPopup } from "./modal.js";
 
 const cardTemplate = document.getElementById("card").content;
-const blockForCards = document.querySelector(".cards");
+
 
 export const createCard = (item) => {
    const cardElement = cardTemplate
@@ -41,7 +41,3 @@ export const createCard = (item) => {
    return cardElement;
  };
 
- // отображаем стартовые карточки на странице
-initialCards.reverse().forEach((item) => {
-   blockForCards.prepend(createCard(item));
- });

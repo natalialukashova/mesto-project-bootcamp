@@ -1,11 +1,14 @@
-import { enableValidation } from "./validation";
+import { enableValidation } from "./validation.js";
 import {
   closePopup,
   openEditPopup,
   openNewCardPopup,
   handleEditProfileFormSubmit,
   handlePlaceSubmit,
-} from "./modal";
+} from "./modal.js";
+import { createCard } from "./card.js";
+import { initialCards } from './data.js'
+
 
 const editPopup = document.querySelector(".popup__edit");
 const newCardPopup = document.querySelector(".popup__card");
@@ -16,6 +19,7 @@ const popupInputs = document.querySelectorAll(".popup__input");
 const editPopupForm = editPopup.querySelector(".popup__form");
 const saveButton = editPopup.querySelector(".popup__button");
 const newCardForm = newCardPopup.querySelector(".form__new_place");
+const blockForCards = document.querySelector(".cards");
 
 editButton.addEventListener("click", openEditPopup);
 
@@ -44,3 +48,8 @@ export const configValidation = {
 };
 
 enableValidation(configValidation);
+
+ // отображаем стартовые карточки на странице
+ initialCards.reverse().forEach((item) => {
+  blockForCards.prepend(createCard(item));
+});

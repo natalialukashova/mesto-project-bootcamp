@@ -1,4 +1,4 @@
-import { configValidation } from "./index";
+import { configValidation } from "./index.js";
 
 const showInputError = (formElement, inputElement, errorMessage, config) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
