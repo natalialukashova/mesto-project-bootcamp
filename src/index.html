@@ -3,15 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./pages/index.css" />
     <title>Mesto</title>
   </head>
   <body class="page">
     <header class="header">
-      <img src="./images/logo.svg" alt="логотип Mesto" class="header__logo" />
+      <img
+        src="<%=require('./images/logo.svg')%>"
+        alt="логотип Mesto"
+        class="header__logo"
+      />
     </header>
     <section class="profile">
-      <img src="./images/avatar.jpg" alt="аватар" class="profile__avatar" />
+      <img
+        src="<%=require('./images/avatar.jpg')%>"
+        alt="аватар"
+        class="profile__avatar"
+      />
       <div class="profile__info">
         <h1 class="profile__title">Жак-Ив Кусто</h1>
         <button class="profile__edit-btn" type="button"></button>
@@ -97,7 +104,7 @@
     <template id="card">
       <article class="element card__element">
         <img
-          src="./images/elements/Trash.svg"
+          src="<%=require('./images/elements/Trash.svg')%>"
           alt="удалить карточку"
           class="element__trash"
         />
@@ -108,7 +115,5 @@
         </div>
       </article>
     </template>
-
-    <script src="./components/index.js" type="module"></script>
   </body>
 </html>

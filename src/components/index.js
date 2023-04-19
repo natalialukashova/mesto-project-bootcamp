@@ -1,3 +1,4 @@
+import '../pages/index.css'
 import { enableValidation } from "./validation.js";
 import {
   closePopup,
