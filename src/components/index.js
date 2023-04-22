@@ -36,11 +36,15 @@ const photoPopupFigcaption = document.querySelector(
 );
 const nameOfNewCard = newCardForm.querySelector(".input__type_name");
 const linkOfNewCard = newCardForm.querySelector(".input__type_link");
-const changeAvatarButton = document.querySelector('.profile__edit-avatar');
-const changeAvatarPopup = document.querySelector('.popup__change-avatar');
-const profileAvatar = document.querySelector('.profile__avatar');
-const inputAvatarLink = document.querySelector('.input__avatar-link');
-const changeAvatarPopupForm = document.querySelector('.form__change-avatar');
+const changeAvatarButton = document.querySelector(".profile__edit-avatar");
+const changeAvatarPopup = document.querySelector(".popup__change-avatar");
+const profileAvatar = document.querySelector(".profile__avatar");
+const inputAvatarLink = document.querySelector(".input__avatar-link");
+const changeAvatarPopupForm = document.querySelector(".form__change-avatar");
+const editProfileInfoButton = editPopup.querySelector(".profile__edit_submit");
+const createNewCardButtonPopup = newCardPopup.querySelector(".create__button");
+const updateAvatarButton =
+  changeAvatarPopupForm.querySelector(".avatar__button");
 
 let userId;
 
@@ -52,7 +56,7 @@ export function initalPageInfo() {
       changeProfileInfo(user);
       changeAvatar(user);
       cards.reverse().forEach((item) => {
-        blockForCards.prepend(createCard(item));
+        blockForCards.prepend(createCard(item, user));
       });
     })
     .catch((err) => {
@@ -99,31 +103,62 @@ export const openNewCardPopup = () => {
 
 export const openChangeAvatarPopup = () => {
   openPopup(changeAvatarPopup);
-}
+};
 
 export const handleEditProfileFormSubmit = (evt) => {
   evt.preventDefault();
-
-  profileTitle.textContent = inputTitle.value;
-  profileSubtitle.textContent = inputDescription.value;
-
-  closePopup(editPopup);
+  const titleValue = inputTitle.value;
+  const descriptionValue = inputDescription.value;
+  const profileInfo = { name: titleValue, about: descriptionValue };
+  editProfileInfoButton.textContent = "Сохранение...";
+  patchProfile(profileInfo)
+    .then((res) => {
+      profileTitle.textContent = res.name;
+      profileSubtitle.textContent = res.about;
+      closePopup(editPopup);
+      editProfileInfoButton.textContent = "Сохранить";
+    })
+    .catch((err) => {
+      console.log(err);
+      editProfileInfoButton.textContent = "Сохранить";
+    });
 };
 
 export const handlePlaceSubmit = (evt) => {
   evt.preventDefault();
   const card = { name: nameOfNewCard.value, link: linkOfNewCard.value };
+  createNewCardButtonPopup.textContent = "Создание...";
 
-  blockForCards.prepend(createCard(card));
-
-  closePopup(newCardPopup);
+  postCard(card)
+    .then((res) => {
+      console.log(res);
+      return getProfile().then((user) => {
+        blockForCards.prepend(createCard(res, user));
+        closePopup(newCardPopup);
+        createNewCardButtonPopup.textContent = "Создать";
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      createNewCardButtonPopup.textContent = "Создать";
+    });
 };
 
 export const handleChangeAvatarSubmit = (evt) => {
   evt.preventDefault();
-  profileAvatar.src = inputAvatarLink.value;
-  closePopup(changeAvatarPopup);
-}
+  const avatar = { avatar: inputAvatarLink.value };
+  updateAvatarButton.textContent = "Сохранение...";
+  patchAvatar(avatar)
+    .then((res) => {
+      profileAvatar.src = res.avatar;
+      closePopup(changeAvatarPopup);
+      updateAvatarButton.textContent = "Сохранить";
+    })
+    .catch((err) => {
+      console.log(err);
+      updateAvatarButton.textContent = "Сохранить";
+    });
+};
 
 editButton.addEventListener("click", openEditPopup);
 
@@ -141,9 +176,9 @@ editPopupForm.addEventListener("submit", handleEditProfileFormSubmit);
 
 newCardForm.addEventListener("submit", handlePlaceSubmit);
 
-changeAvatarButton.addEventListener('click', openChangeAvatarPopup);
+changeAvatarButton.addEventListener("click", openChangeAvatarPopup);
 
-changeAvatarPopupForm.addEventListener('submit', handleChangeAvatarSubmit)
+changeAvatarPopupForm.addEventListener("submit", handleChangeAvatarSubmit);
 
 export const configValidation = {
   formSelector: ".popup__form",
