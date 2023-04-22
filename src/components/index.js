@@ -102,6 +102,7 @@ export const openNewCardPopup = () => {
 };
 
 export const openChangeAvatarPopup = () => {
+  inputAvatarLink.value = "";
   openPopup(changeAvatarPopup);
 };
 
