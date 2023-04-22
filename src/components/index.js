@@ -2,7 +2,18 @@ import "../pages/index.css";
 import { enableValidation, cleaningErrorsOfPopup } from "./validation.js";
 import { createCard } from "./card.js";
 import { initialCards } from "./data.js";
-import { openPopup, closePopup } from './modal.js'
+import { openPopup, closePopup } from "./modal.js";
+import {
+  getCards,
+  getCardId,
+  postCard,
+  deleteCard,
+  getProfile,
+  patchProfile,
+  getAvatar,
+  patchAvatar,
+} from "./api.js";
+import { getProfileInfo, changeProfileInfo, changeAvatar } from "./profile.js";
 
 const editPopup = document.querySelector(".popup_type_edit");
 const newCardPopup = document.querySelector(".popup_type_card");
@@ -20,9 +31,51 @@ const inputTitle = document.querySelector(".input__title");
 const inputDescription = document.querySelector(".input__description");
 const photoPopup = document.querySelector(".popup__type_photo-popup");
 const photoPopupImage = document.querySelector(".popup__photo-popup_image");
-const photoPopupFigcaption = document.querySelector(".popup__photo-popup_figcaption");
+const photoPopupFigcaption = document.querySelector(
+  ".popup__photo-popup_figcaption"
+);
 const nameOfNewCard = newCardForm.querySelector(".input__type_name");
 const linkOfNewCard = newCardForm.querySelector(".input__type_link");
+const changeAvatarButton = document.querySelector('.profile__edit-avatar');
+const changeAvatarPopup = document.querySelector('.popup__change-avatar');
+const profileAvatar = document.querySelector('.profile__avatar');
+const inputAvatarLink = document.querySelector('.input__avatar-link');
+const changeAvatarPopupForm = document.querySelector('.form__change-avatar');
+
+let userId;
+
+export function initalPageInfo() {
+  Promise.all([getCards(), getProfile()])
+    .then(([cards, user]) => {
+      const { _id } = user;
+      userId = user._id;
+      changeProfileInfo(user);
+      changeAvatar(user);
+      cards.reverse().forEach((item) => {
+        blockForCards.prepend(createCard(item));
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+initalPageInfo();
+
+// функция закрытия попапа клавишей Esc
+export const closePopupEsc = (evt) => {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_opened");
+    closePopup(openedPopup);
+  }
+};
+
+// функция закрытия попапа по клику на оверлей
+export const closePopupOverlay = (evt) => {
+  if (evt.currentTarget === evt.target) {
+    closePopup(evt.currentTarget);
+  }
+};
 
 export const openPhotoPopup = ({ name, link }) => {
   photoPopupImage.src = link;
@@ -44,6 +97,10 @@ export const openNewCardPopup = () => {
   openPopup(newCardPopup);
 };
 
+export const openChangeAvatarPopup = () => {
+  openPopup(changeAvatarPopup);
+}
+
 export const handleEditProfileFormSubmit = (evt) => {
   evt.preventDefault();
 
@@ -62,20 +119,11 @@ export const handlePlaceSubmit = (evt) => {
   closePopup(newCardPopup);
 };
 
-// функция закрытия попапа клавишей Esc
-export const closePopupEsc = (evt) => {
-  if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".popup_opened");
-    closePopup(openedPopup);
-  }
-};
-
-// функция закрытия попапа по клику на оверлей
-export const closePopupOverlay = (evt) => {
-  if (evt.currentTarget === evt.target) {
-    closePopup(evt.currentTarget);
-  }
-};
+export const handleChangeAvatarSubmit = (evt) => {
+  evt.preventDefault();
+  profileAvatar.src = inputAvatarLink.value;
+  closePopup(changeAvatarPopup);
+}
 
 editButton.addEventListener("click", openEditPopup);
 
@@ -93,6 +141,10 @@ editPopupForm.addEventListener("submit", handleEditProfileFormSubmit);
 
 newCardForm.addEventListener("submit", handlePlaceSubmit);
 
+changeAvatarButton.addEventListener('click', openChangeAvatarPopup);
+
+changeAvatarPopupForm.addEventListener('submit', handleChangeAvatarSubmit)
+
 export const configValidation = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
@@ -105,7 +157,13 @@ export const configValidation = {
 
 enableValidation(configValidation);
 
-// отображаем стартовые карточки на странице
-initialCards.reverse().forEach((item) => {
-  blockForCards.prepend(createCard(item));
-});
+// getCards().then((res) => {
+//   res.reverse().forEach((item) => {
+//     blockForCards.prepend(createCard(item));
+//   });
+// });
+
+// // отображаем стартовые карточки на странице
+// initialCards.reverse().forEach((item) => {
+//   blockForCards.prepend(createCard(item));
+// });
