@@ -29,20 +29,19 @@ export const createCard = (item, user) => {
     likeButton.classList.add("element__button_active");
   }
 
-  let copyLikes = [...item.likes];
 
   // метод, позволяющий лайкать карточки
   const handleLike = () => {
     if (
-      copyLikes.some((userLike) => {
+      item.likes.some((userLike) => {
         return userLike._id === user._id;
       })
     ) {
       deleteLike(item._id)
         .then(() => {
-          cardLikes.textContent = copyLikes.length - 1;
+          cardLikes.textContent = item.likes.length - 1;
           likeButton.classList.remove("element__button_active");
-          copyLikes = copyLikes.filter((userLike) => {
+          item.likes = item.likes.filter((userLike) => {
             return userLike._id !== user._id;
           });
         })
@@ -52,9 +51,9 @@ export const createCard = (item, user) => {
     } else {
       putLike(item._id)
         .then(() => {
-          cardLikes.textContent = copyLikes.length + 1;
+          cardLikes.textContent = item.likes.length + 1;
           likeButton.classList.add("element__button_active");
-          copyLikes.push(user);
+          item.likes.push(user);
         })
         .catch((err) => {
           console.log(err);
