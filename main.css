@@ -38,5 +38,5 @@
 .photo-popup{background-color:rgba(0,0,0,.9)}
 .photo-popup__figure{align-items:center;background-color:unset;justify-content:center;position:relative}
 .popup__photo-popup_figcaption{background-color:transparent;color:#fff;font-size:12px;font-weight:400;line-height:15px;margin:10px 0 0}
-.photo-popup__image{max-height:75vh;max-width:75vw}
+.popup__photo-popup_image{max-height:75vh;max-width:75vw}
 
