@@ -38,19 +38,27 @@ export const createCard = (item, user) => {
         return userLike._id === user._id;
       })
     ) {
-      deleteLike(item._id).then(() => {
-        cardLikes.textContent = copyLikes.length - 1;
-        likeButton.classList.remove("element__button_active");
-        copyLikes = copyLikes.filter((userLike) => {
-          return userLike._id !== user._id;
+      deleteLike(item._id)
+        .then(() => {
+          cardLikes.textContent = copyLikes.length - 1;
+          likeButton.classList.remove("element__button_active");
+          copyLikes = copyLikes.filter((userLike) => {
+            return userLike._id !== user._id;
+          });
+        })
+        .catch((err) => {
+          console.log(err);
         });
-      });
     } else {
-      putLike(item._id).then(() => {
-        cardLikes.textContent = copyLikes.length + 1;
-        likeButton.classList.add("element__button_active");
-        copyLikes.push(user);
-      });
+      putLike(item._id)
+        .then(() => {
+          cardLikes.textContent = copyLikes.length + 1;
+          likeButton.classList.add("element__button_active");
+          copyLikes.push(user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
