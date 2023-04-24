@@ -38,11 +38,11 @@ export const createCard = (item, user) => {
     ) {
       deleteLike(item._id)
         .then(() => {
-          cardLikes.textContent = item.likes.length;
-          likeButton.classList.remove("element__button_active");
           item.likes = item.likes.filter((userLike) => {
             return userLike._id !== user._id;
           });
+          cardLikes.textContent = item.likes.length;
+          likeButton.classList.remove("element__button_active");
         })
         .catch((err) => {
           console.log(err);
@@ -50,9 +50,9 @@ export const createCard = (item, user) => {
     } else {
       putLike(item._id)
         .then(() => {
+          item.likes.push(user);
           cardLikes.textContent = item.likes.length;
           likeButton.classList.add("element__button_active");
-          item.likes.push(user);
         })
         .catch((err) => {
           console.log(err);
