@@ -29,7 +29,6 @@ export const createCard = (item, user) => {
     likeButton.classList.add("element__button_active");
   }
 
-
   // метод, позволяющий лайкать карточки
   const handleLike = () => {
     if (
@@ -39,7 +38,7 @@ export const createCard = (item, user) => {
     ) {
       deleteLike(item._id)
         .then(() => {
-          cardLikes.textContent = item.likes.length - 1;
+          cardLikes.textContent = item.likes.length;
           likeButton.classList.remove("element__button_active");
           item.likes = item.likes.filter((userLike) => {
             return userLike._id !== user._id;
@@ -51,7 +50,7 @@ export const createCard = (item, user) => {
     } else {
       putLike(item._id)
         .then(() => {
-          cardLikes.textContent = item.likes.length + 1;
+          cardLikes.textContent = item.likes.length;
           likeButton.classList.add("element__button_active");
           item.likes.push(user);
         })
@@ -63,9 +62,13 @@ export const createCard = (item, user) => {
 
   // метод, позволяющий удалять карточки
   const handlerDeleteCard = () => {
-    deleteCard(item._id).then(() => {
-      cardElement.remove();
-    });
+    deleteCard(item._id)
+      .then(() => {
+        cardElement.remove();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handlePhotoPopup = () => {
