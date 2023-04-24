@@ -75,16 +75,23 @@ export function patchAvatar(data) {
   }).then(checkResponse);
 }
 
-export function putLike(idCard) {
+export function toggleLike(idCard, isLiked) {
   return fetch(`${config.baseUrl}/cards/likes/${idCard}`, {
     headers: config.headers,
-    method: "PUT",
+    method:  isLiked ? 'DELETE' : 'PUT',
   }).then(checkResponse);
 }
 
-export function deleteLike(idCard) {
-  return fetch(`${config.baseUrl}/cards/likes/${idCard}`, {
-    headers: config.headers,
-    method: "DELETE",
-  }).then(checkResponse);
-}
+// export function putLike(idCard) {
+//   return fetch(`${config.baseUrl}/cards/likes/${idCard}`, {
+//     headers: config.headers,
+//     method: "PUT",
+//   }).then(checkResponse);
+// }
+
+// export function deleteLike(idCard) {
+//   return fetch(`${config.baseUrl}/cards/likes/${idCard}`, {
+//     headers: config.headers,
+//     method: "DELETE",
+//   }).then(checkResponse);
+// }

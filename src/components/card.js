@@ -1,5 +1,5 @@
 import { openPhotoPopup } from "./index.js";
-import { deleteCard, putLike, deleteLike } from "./api.js";
+import { deleteCard, toggleLike } from "./api.js";
 
 const cardTemplate = document.getElementById("card").content;
 
@@ -31,33 +31,22 @@ export const createCard = (item, user) => {
 
   // метод, позволяющий лайкать карточки
   const handleLike = () => {
-    if (
-      item.likes.some((userLike) => {
-        return userLike._id === user._id;
-      })
-    ) {
-      deleteLike(item._id)
-        .then(() => {
-          item.likes = item.likes.filter((userLike) => {
-            return userLike._id !== user._id;
-          });
-          cardLikes.textContent = item.likes.length;
-          likeButton.classList.remove("element__button_active");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      putLike(item._id)
-        .then(() => {
-          item.likes.push(user);
-          cardLikes.textContent = item.likes.length;
+    toggleLike(
+      item._id,
+      item.likes.some((usr) => usr._id === user._id)
+    )
+      .then(({ likes }) => {
+        item.likes = likes;
+        cardLikes.textContent = item.likes.length;
+        if (item.likes.map((usr) => usr._id).includes(user._id)) {
           likeButton.classList.add("element__button_active");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+        } else {
+          likeButton.classList.remove("element__button_active");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   // метод, позволяющий удалять карточки
